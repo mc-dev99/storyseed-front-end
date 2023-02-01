@@ -17,15 +17,6 @@ export default function App() {
     });
   }, []);
 
-  async function getDecks() {
-    const { data: decks, error } = await supabase
-      .from("decks")
-      .select(`*, cards(*)`)
-      .eq("id", "4");
-    console.log(decks, error);
-  }
-  getDecks();
-
   return (
     <div className="container" style={{ padding: "50px 0 100px 0" }}>
       {!session ? (
