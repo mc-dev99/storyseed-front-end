@@ -18,9 +18,7 @@ export default function App() {
     });
   }, []);
 
-  console.log(`All decks are:`);
   routes.getAllDecks();
-  console.log(`Deck 4 is:`);
   routes.getDeck(4);
 
   return (
