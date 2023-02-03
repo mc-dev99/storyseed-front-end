@@ -23,6 +23,10 @@ async function getDeck(id) {
 }
 
 // POST new deck
+async function createDeck(newtitle) {
+  const { error } = await supabase.from("decks").insert([{ title: newtitle }]);
+  console.log(`New deck created!`);
+}
 // UPDATE a deck
 // DELETE a deck
 
@@ -34,4 +38,4 @@ async function getDeck(id) {
 // UPDATE a card
 // DELETE a card
 
-export { getAllDecks, getDeck };
+export { getAllDecks, getDeck, createDeck };
