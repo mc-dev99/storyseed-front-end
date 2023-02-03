@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
 import Auth from "./components/Auth";
 import Account from "./components/Account";
-import * as routes from "./api/Routes.js";
+import * as routes from "./api/routes.js";
 
 export default function App() {
   const [session, setSession] = useState(null);
