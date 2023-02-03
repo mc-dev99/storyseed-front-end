@@ -20,6 +20,8 @@ export default function App() {
 
   routes.getAllDecks();
   routes.getDeck(4);
+  routes.getCardsOfDeck(4);
+  routes.getCard(2);
 
   return (
     <div className="container" style={{ padding: "50px 0 100px 0" }}>

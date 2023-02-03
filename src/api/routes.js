@@ -23,18 +23,18 @@ async function getDeck(id) {
 }
 
 // POST new deck
-async function createDeck(newtitle) {
-  const { error } = await supabase.from("decks").insert([{ title: newtitle }]);
+async function createDeck(title) {
+  const { error } = await supabase.from("decks").insert([{ title: title }]);
   console.log(`New deck created!`);
 }
 
 // UPDATE a deck
-async function updateDeck(id, newtitle) {
+async function updateDeck(id, title) {
   const { data, error } = await supabase
     .from("decks")
-    .update({ title: newtitle })
+    .update({ title: title })
     .eq("id", id);
-  console.log(`Deck ${id} successfully updated! New title is ${newtitle}`);
+  console.log(`Deck ${id} successfully updated! New title is ${title}`);
 }
 
 // DELETE a deck
@@ -46,9 +46,61 @@ async function deleteDeck(id) {
 // Card functions
 
 // GET all cards of a deck
-// GET a specific card
-// POST new card to a deck
-// UPDATE a card
-// DELETE a card
+async function getCardsOfDeck(deck_id) {
+  const { data: cards, error } = await supabase
+    .from("cards")
+    .select()
+    .eq("deck", deck_id);
+  console.log(`All cards of deck ${deck_id}:`);
+  console.log(cards);
+  return cards;
+}
 
-export { getAllDecks, getDeck, createDeck, updateDeck, deleteDeck };
+// GET a specific card
+async function getCard(id) {
+  const { data: card, error } = await supabase
+    .from("cards")
+    .select()
+    .eq("id", id);
+  console.log(`Card ${id} is:`);
+  console.log(card);
+  return card;
+}
+
+// POST new card to a deck
+async function createCard(title, desc, deck_id) {
+  const { error } = await supabase
+    .from("cards")
+    .insert([{ title: title, desc: desc, deck: deck_id }]);
+  console.log(`New card created!`);
+}
+
+// UPDATE a card
+async function updateCard(id, title, desc) {
+  const { data, error } = await supabase
+    .from("cards")
+    .update({ title: title, desc: desc })
+    .eq("id", id);
+  console.log(
+    `Card ${id} successfully updated! New title is ${title} and description is ${desc}`
+  );
+}
+
+// DELETE a card
+async function deleteCard(id) {
+  const { data, error } = await supabase.from("cards").delete().eq("id", id);
+  console.log(`Card ${id} successfully deleted!`);
+}
+
+export {
+  getAllDecks,
+  getDeck,
+  createDeck,
+  updateDeck,
+  deleteDeck,
+  getCardsOfDeck,
+  getCard,
+  createCard,
+  updateCard,
+  deleteCard,
+};
