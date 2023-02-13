@@ -98,8 +98,7 @@ function App() {
         <h1>StorySeed</h1>
       </header>
       <div id="flex">
-        <DeckList decks={deckListData} onSelectDeck={selectDeck} />
-        <LeftSidebar />
+        <LeftSidebar decks={deckListData} onSelectDeck={selectDeck} />
         <main>
           <DndContext
             onDragEnd={handleDragEnd}
