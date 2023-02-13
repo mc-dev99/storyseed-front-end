@@ -1,24 +1,42 @@
 // import PropTypes from "prop-types";
-import React from "react";
+import { useState } from "react";
 import { List, ListItemButton, ListItemText, MenuItem } from "@mui/material";
 
 export default function CardList({ cards, onSelectCard, onDeleteCard }) {
+  const [cardName, setCardName] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(1);
+  const handleClick = (event, index) => {
+    // console.log(event);
+    // const {
+    //   target: { value },
+    // } = event;
+    console.log(event.target);
+    setSelectedIndex(index);
+    onSelectCard(index);
+    // onSelectCard(event.target.getAttribute("card-id"));
+  };
+
   const cardComponents = cards.map((card) => {
     return (
-      <ListItemButton disablepadding="true" key={card.id} value={card.id}>
-        <ListItemText primary={card.title} />
+      <ListItemButton
+        disablepadding="true"
+        key={card.id}
+        value={card.id}
+        selected={selectedIndex === card.id}
+        card-id={card.id}
+        onClick={(event) => handleClick(event, card.id)}
+      >
+        <ListItemText card-id={card.id} value={card.id} primary={card.title} />
       </ListItemButton>
     );
   });
-
-  console.log(cardComponents);
 
   return (
     <List dense>
       {cardComponents.length > 0 ? (
         cardComponents
       ) : (
-        <ListItemButton disablepadding="true" disabled="true">
+        <ListItemButton disablepadding="true" disabled>
           <ListItemText primary={"Deck is empty"} />
         </ListItemButton>
       )}

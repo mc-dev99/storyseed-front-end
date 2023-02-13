@@ -7,9 +7,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function NewDeckForm({ onCreateDeck }) {
+export default function NewDeckForm({ deckId, deckTitle, onUpdateDeck }) {
   const [open, setOpen] = useState(false);
-  const [deckFormFields, setDeckFormFields] = useState("");
+  const [deckFormFields, setDeckFormFields] = useState(deckTitle);
 
   const onTitleChange = (event) => {
     setDeckFormFields(event.target.value);
@@ -24,17 +24,15 @@ export default function NewDeckForm({ onCreateDeck }) {
   };
 
   const handleCreate = (event) => {
-    onCreateDeck(deckFormFields);
+    onUpdateDeck(deckId, deckFormFields);
     setOpen(false);
   };
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Create New Deck
-      </Button>
+      <Button onClick={handleClickOpen}>Rename</Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>New Deck</DialogTitle>
+        <DialogTitle>Rename {deckTitle}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -49,7 +47,7 @@ export default function NewDeckForm({ onCreateDeck }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleCreate}>Create</Button>
+          <Button onClick={handleCreate}>Save</Button>
         </DialogActions>
       </Dialog>
     </div>

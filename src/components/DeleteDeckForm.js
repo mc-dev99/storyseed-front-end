@@ -7,7 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function DeleteDeckForm({ id, onDeleteDeck }) {
+export default function DeleteDeckForm({ deckId, onDeleteDeck }) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -19,15 +19,13 @@ export default function DeleteDeckForm({ id, onDeleteDeck }) {
   };
 
   const handleDelete = (event) => {
-    onDeleteDeck(id);
+    onDeleteDeck(deckId);
     setOpen(false);
   };
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Delete Deck
-      </Button>
+      <Button onClick={handleClickOpen}>Delete</Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Confirm Deletion?</DialogTitle>
         <DialogActions>

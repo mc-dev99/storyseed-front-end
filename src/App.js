@@ -37,6 +37,11 @@ function App() {
     id: null,
   });
   const [cardsData, setCardsData] = useState([]);
+  const [selectedCard, setSelectedCard] = useState({
+    title: "",
+    id: null,
+    desc: "",
+  });
 
   const refreshDecks = () => {
     return routes
@@ -83,11 +88,32 @@ function App() {
       });
   };
 
+  const updateDeck = (id, title) => {
+    return routes
+      .updateDeck(id, title)
+      .then(() => {
+        refreshDecks();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const deleteDeck = (id) => {
     return routes
       .deleteDeck(id)
       .then(() => {
         refreshDecks();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const selectCard = (id) => {
+    return routes
+      .getCard(id)
+      .then((card) => {
+        setSelectedCard(card[0]);
       })
       .catch((error) => {
         console.log(error);
@@ -127,7 +153,9 @@ function App() {
           cards={cardsData}
           onSelectDeck={selectDeck}
           onCreateDeck={createDeck}
+          onUpdateDeck={updateDeck}
           onDeleteDeck={deleteDeck}
+          onSelectCard={selectCard}
         />
         <main>
           <DndContext
@@ -151,7 +179,7 @@ function App() {
             ))}
           </DndContext>
         </main>
-        <RightSidebar />
+        <RightSidebar selectedCard={selectedCard} />
       </div>
     </div>
   );
