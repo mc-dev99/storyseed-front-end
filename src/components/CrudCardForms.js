@@ -214,6 +214,7 @@ export default function CrudDeckForms({
             onUpdateCard={onUpdateCard}
           />
           <DeleteCardForm
+            deckId={selectedDeck.id}
             cardId={selectedCard.id}
             onDeleteCard={onDeleteCard}
           />
