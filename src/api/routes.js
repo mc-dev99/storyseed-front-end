@@ -3,6 +3,11 @@ import { supabase } from "../supabaseClient";
 
 // Deck functions
 
+// const deckInfoFromJson = (deck) => {
+//   const { id, title } = deck;
+//   return { id, title };
+// };
+
 // GET all decks
 async function getAllDecks() {
   const { data: decks, error } = await supabase.from("decks").select();

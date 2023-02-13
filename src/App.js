@@ -10,10 +10,67 @@ import Auth from "./components/Auth";
 import Account from "./components/Account";
 import * as routes from "./api/routes.js";
 
+import LeftSidebar from "./components/LeftSidebar";
+import RightSidebar from "./components/RightSidebar";
+import DeckList from "./components/DeckList";
 import { Droppable } from "./components/Droppable";
 import { Draggable } from "./components/Draggable";
 
 function App() {
+  //Authentication Session
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
+  //Deck and Card State
+  const [deckListData, setDeckListData] = useState([]);
+  const [selectedDeck, setSelectedDeck] = useState({
+    title: "",
+    id: null,
+  });
+  const [cardsData, setCardsData] = useState([]);
+
+  const refreshDecks = () => {
+    return routes
+      .getAllDecks()
+      .then((decks) => {
+        setDeckListData(decks);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  useEffect(() => {
+    refreshDecks();
+  }, []);
+
+  const selectDeck = (id) => {
+    return routes
+      .getDeck(id)
+      .then((deck) => {
+        setSelectedDeck(deck);
+        return routes
+          .getCardsOfDeck(id)
+          .then((cards) => {
+            setCardsData(cards);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const containers = ["A", "B", "C"];
   const [dragPos, setDragPos] = useState({
     id: "draggable",
@@ -41,32 +98,8 @@ function App() {
         <h1>StorySeed</h1>
       </header>
       <div id="flex">
-        <aside id="leftSidebar">
-          <h2>Updates</h2>
-          <div class="box">
-            <p>I have recently updated this tool as of August 2022!</p>
-            <ul>
-              <li>Rewrote the JS to generate cleaner code</li>
-              <li>
-                Rewrote the CSS in a way that hopefully makes much more sense to
-                edit
-              </li>
-              <li>Added a couple of new features!</li>
-              <li>
-                Old version is still available{" "}
-                <a href="old.html" target="_blank">
-                  here
-                </a>
-              </li>
-            </ul>
-          </div>
-          <h2>Hi there!</h2>
-          <p>
-            Do you have a suggestion for a feature? Some criticism about the
-            tool or something that confused you? Let me know!
-            sadgrl[at]riseup.net
-          </p>
-        </aside>
+        <DeckList decks={deckListData} onSelectDeck={selectDeck} />
+        <LeftSidebar />
         <main>
           <DndContext
             onDragEnd={handleDragEnd}
@@ -89,32 +122,7 @@ function App() {
             ))}
           </DndContext>
         </main>
-        <aside id="rightSidebar">
-          <h2>Updates</h2>
-          <div class="box">
-            <p>I have recently updated this tool as of August 2022!</p>
-            <ul>
-              <li>Rewrote the JS to generate cleaner code</li>
-              <li>
-                Rewrote the CSS in a way that hopefully makes much more sense to
-                edit
-              </li>
-              <li>Added a couple of new features!</li>
-              <li>
-                Old version is still available{" "}
-                <a href="old.html" target="_blank">
-                  here
-                </a>
-              </li>
-            </ul>
-          </div>
-          <h2>Hi there!</h2>
-          <p>
-            Do you have a suggestion for a feature? Some criticism about the
-            tool or something that confused you? Let me know!
-            sadgrl[at]riseup.net
-          </p>
-        </aside>
+        <RightSidebar />
       </div>
     </div>
   );
