@@ -4,7 +4,7 @@
   /* if you change the above value, scroll to the bottom
 and change the media query according to the comment! */
   margin: 0 auto;
-  width: 1200px;
+  width: 1300px;
   /* this centers the entire page */
 }
 
@@ -18,13 +18,13 @@ and change the media query according to the comment! */
 
 }
 
-#area {
+/* #area {
   width: 500px;
   height: 300px;
   border: 1px solid #555;
   margin: 0 auto;
   border-radius: .5em;
-}
+} */
 
 #topBar {
   text-align: center;
@@ -39,10 +39,12 @@ aside {
 }
 
 main {
-  background-color: gray;
+  outline-style: solid;
+  outline-color: gray;
   flex: 1;
   padding: 20px;
   order: 2;
+  min-height: 500px;
 }
 
 */ #leftSidebar {

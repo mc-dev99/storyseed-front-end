@@ -1,6 +1,14 @@
 import React from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
+import {
+  Card,
+  CardContent,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export function Draggable(props) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -16,6 +24,7 @@ export function Draggable(props) {
   // const transform_y = transform ? `${transform.y}px` : "0px";
 
   const style = {
+    cursor: "pointer",
     position: "absolute",
     left: props.left,
     top: props.top,
@@ -23,8 +32,14 @@ export function Draggable(props) {
   };
 
   return (
-    <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
-      {props.children}
-    </button>
+    <Card
+      sx={{ minWidth: 70, minHeight: 120 }}
+      ref={setNodeRef}
+      style={style}
+      {...listeners}
+      {...attributes}
+    >
+      <CardContent>{props.children}</CardContent>
+    </Card>
   );
 }

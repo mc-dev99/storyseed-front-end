@@ -9,6 +9,7 @@ import { supabase } from "./supabaseClient";
 import Auth from "./components/Auth";
 import Account from "./components/Account";
 import * as routes from "./api/routes.js";
+import { Button } from "@mui/material";
 
 import LeftSidebar from "./components/LeftSidebar";
 import RightSidebar from "./components/RightSidebar";
@@ -98,7 +99,11 @@ function App() {
         <h1>StorySeed</h1>
       </header>
       <div id="flex">
-        <LeftSidebar decks={deckListData} onSelectDeck={selectDeck} />
+        <LeftSidebar
+          decks={deckListData}
+          cards={cardsData}
+          onSelectDeck={selectDeck}
+        />
         <main>
           <DndContext
             onDragEnd={handleDragEnd}

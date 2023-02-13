@@ -58,7 +58,8 @@ async function getCardsOfDeck(deck_id) {
   const { data: cards, error } = await supabase
     .from("cards")
     .select()
-    .eq("deck", deck_id);
+    .eq("deck", deck_id)
+    .order("title", { ascending: true });
   console.log(`All cards of deck ${deck_id}:`);
   console.log(cards);
   return cards;

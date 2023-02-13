@@ -1,29 +1,24 @@
+import { Card, CardContent } from "@mui/material";
+
 export default function RightSidebar() {
   return (
     <aside id="rightSidebar">
-      <h2>Updates</h2>
-      <div className="box">
-        <p>I have recently updated this tool as of August 2022!</p>
-        <ul>
-          <li>Rewrote the JS to generate cleaner code</li>
-          <li>
-            Rewrote the CSS in a way that hopefully makes much more sense to
-            edit
-          </li>
-          <li>Added a couple of new features!</li>
-          <li>
-            Old version is still available{" "}
-            <a href="old.html" target="_blank">
-              here
-            </a>
-          </li>
-        </ul>
-      </div>
-      <h2>Hi there!</h2>
-      <p>
-        Do you have a suggestion for a feature? Some criticism about the tool or
-        something that confused you? Let me know! sadgrl[at]riseup.net
-      </p>
+      <Card>
+        <CardContent>
+          <h2>Lorem ipsum</h2>
+          <div className="box">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
     </aside>
   );
 }
