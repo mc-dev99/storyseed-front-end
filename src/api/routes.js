@@ -33,7 +33,7 @@ async function getDeck(id) {
 // POST new deck
 async function createDeck(title) {
   const { error } = await supabase.from("decks").insert([{ title: title }]);
-  console.log(`New deck created!`);
+  console.log(`New deck ${title} created!`);
 }
 
 // UPDATE a deck

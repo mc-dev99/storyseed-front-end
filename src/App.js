@@ -72,6 +72,17 @@ function App() {
       });
   };
 
+  const createDeck = (title) => {
+    return routes
+      .createDeck(title)
+      .then(() => {
+        refreshDecks();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const containers = ["A", "B", "C"];
   const [dragPos, setDragPos] = useState({
     id: "draggable",
@@ -103,6 +114,7 @@ function App() {
           decks={deckListData}
           cards={cardsData}
           onSelectDeck={selectDeck}
+          onCreateDeck={createDeck}
         />
         <main>
           <DndContext

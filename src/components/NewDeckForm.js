@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -7,8 +7,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function FormDialog() {
-  const [open, setOpen] = React.useState(false);
+export default function NewDeckForm({ onCreateDeck }) {
+  const [open, setOpen] = useState(false);
+  const [deckFormFields, setDeckFormFields] = useState("");
+
+  const onTitleChange = (event) => {
+    setDeckFormFields(event.target.value);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,31 +23,33 @@ export default function FormDialog() {
     setOpen(false);
   };
 
+  const handleCreate = (event) => {
+    onCreateDeck(deckFormFields);
+    setOpen(false);
+  };
+
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+        New Deck
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>New Deck</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Email Address"
-            type="email"
+            label="Title"
+            type="title"
             fullWidth
             variant="standard"
+            onChange={onTitleChange}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleCreate}>Create</Button>
         </DialogActions>
       </Dialog>
     </div>

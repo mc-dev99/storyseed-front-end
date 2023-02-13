@@ -1,10 +1,14 @@
+.box {
+  margin: 10px 0 10px 0;
+}
+
 #container {
   /* max-width: 900px; */
   /* this is the width of your layout! */
   /* if you change the above value, scroll to the bottom
 and change the media query according to the comment! */
   margin: 0 auto;
-  width: 1300px;
+  /* width: 1350px; */
   /* this centers the entire page */
 }
 
@@ -13,9 +17,6 @@ and change the media query according to the comment! */
 }
 
 .App {
-  text-align: center;
-  padding: 30px;
-
 }
 
 /* #area {
@@ -32,8 +33,8 @@ and change the media query according to the comment! */
 
 aside {
   /* background-color: #241445; */
-  width: 200px;
-  padding: 20px;
+  width: 225px;
+  padding: 40px;
   font-size: smaller;
   /* this makes the sidebar text slightly smaller */
 }
@@ -47,7 +48,7 @@ main {
   min-height: 500px;
 }
 
-*/ #leftSidebar {
+#leftSidebar {
   order: 1;
 }
 
