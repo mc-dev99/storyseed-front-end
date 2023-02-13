@@ -83,6 +83,17 @@ function App() {
       });
   };
 
+  const deleteDeck = (id) => {
+    return routes
+      .deleteDeck(id)
+      .then(() => {
+        refreshDecks();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const containers = ["A", "B", "C"];
   const [dragPos, setDragPos] = useState({
     id: "draggable",
@@ -111,10 +122,12 @@ function App() {
       </header>
       <div id="flex">
         <LeftSidebar
+          selectedDeck={selectedDeck}
           decks={deckListData}
           cards={cardsData}
           onSelectDeck={selectDeck}
           onCreateDeck={createDeck}
+          onDeleteDeck={deleteDeck}
         />
         <main>
           <DndContext
