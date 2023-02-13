@@ -1,16 +1,60 @@
 // import PropTypes from "prop-types";
-import React from "react";
+import { useState } from "react";
+import {
+  Button,
+  Divider,
+  FormControl,
+  MenuItem,
+  Select,
+  InputLabel,
+  OutlinedInput,
+} from "@mui/material";
 
 export default function DeckList({ decks, onSelectDeck, onDeleteCard }) {
-  const deckComponents = decks.map((deck, index) => {
+  // const deckComponents = decks.map((deck, index) => {
+  //   return (
+  //     <div key={index}>
+  //       {/* <div onClick={() => onSelectDeck(deck.id)}>{deck.title}</div> */}
+  //       <Button variant="outlined" onClick={() => onSelectDeck(deck.id)}>
+  //         {deck.title}
+  //       </Button>
+  //     </div>
+  //   );
+  // });
+
+  // return <div>{deckComponents}</div>;
+
+  const [deckName, setDeckName] = useState("");
+  const deckComponents = decks.map((deck) => {
     return (
-      <div key={index}>
-        <div onClick={() => onSelectDeck(deck.id)}>{deck.title}</div>
-      </div>
+      <MenuItem key={deck.id} value={deck.id}>
+        {deck.title}
+      </MenuItem>
     );
   });
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setDeckName(value);
+    console.log(event);
+    onSelectDeck(value);
+  };
 
-  return <div>{deckComponents}</div>;
+  return (
+    <FormControl fullWidth>
+      <InputLabel id="demo-simple-select-label">Deck</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={deckName}
+        onChange={handleChange}
+        input={<OutlinedInput label="Deck" />}
+      >
+        {deckComponents}
+      </Select>
+    </FormControl>
+  );
 }
 
 // DeckList.propTypes = {

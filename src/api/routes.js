@@ -10,7 +10,10 @@ import { supabase } from "../supabaseClient";
 
 // GET all decks
 async function getAllDecks() {
-  const { data: decks, error } = await supabase.from("decks").select();
+  const { data: decks, error } = await supabase
+    .from("decks")
+    .select()
+    .order("title", { ascending: true });
   console.log(`All decks:`);
   console.log(decks);
   return decks;
