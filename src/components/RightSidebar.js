@@ -2,7 +2,7 @@ export default function RightSidebar() {
   return (
     <aside id="rightSidebar">
       <h2>Updates</h2>
-      <div class="box">
+      <div className="box">
         <p>I have recently updated this tool as of August 2022!</p>
         <ul>
           <li>Rewrote the JS to generate cleaner code</li>
