@@ -40,7 +40,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({
     title: "",
     id: null,
-    desc: "",
+    desc: "No card selected",
   });
 
   const refreshDecks = () => {
