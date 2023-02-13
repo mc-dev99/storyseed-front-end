@@ -98,6 +98,7 @@ function App() {
         console.log(error);
       });
   };
+
   const deleteDeck = (id) => {
     return routes
       .deleteDeck(id)
@@ -109,11 +110,58 @@ function App() {
       });
   };
 
+  const refreshCards = (id) => {
+    return routes
+      .getCardsOfDeck(id)
+      .then((cards) => {
+        setCardsData(cards);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const selectCard = (id) => {
     return routes
       .getCard(id)
       .then((card) => {
         setSelectedCard(card[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const createCard = (title, desc, deck_id) => {
+    return routes
+      .createCard(title, desc, deck_id)
+      .then(() => {
+        refreshDecks();
+        refreshCards(deck_id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const updateCard = (id, title, desc, deck_id) => {
+    return routes
+      .updateCard(id, title, desc)
+      .then(() => {
+        refreshDecks();
+        refreshCards(deck_id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const deleteCard = (id, deck_id) => {
+    return routes
+      .deleteCard(id)
+      .then(() => {
+        refreshDecks();
+        refreshCards(deck_id);
       })
       .catch((error) => {
         console.log(error);
@@ -179,7 +227,13 @@ function App() {
             ))}
           </DndContext>
         </main>
-        <RightSidebar selectedCard={selectedCard} />
+        <RightSidebar
+          selectedCard={selectedCard}
+          selectedDeck={selectedDeck}
+          onCreateCard={createCard}
+          onUpdateCard={updateCard}
+          onDeleteCard={deleteCard}
+        />
       </div>
     </div>
   );
