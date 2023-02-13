@@ -1,9 +1,10 @@
 import DeckList from "./DeckList";
 import { ButtonGroup, Divider } from "@mui/material";
 import CardList from "./CardList";
-import NewDeckForm from "./NewDeckForm";
-import UpdateDeckForm from "./UpdateDeckForm";
-import DeleteDeckForm from "./DeleteDeckForm";
+import CrudDeckForms from "./CrudDeckForms";
+// import NewDeckForm from "./NewDeckForm";
+// import UpdateDeckForm from "./UpdateDeckForm";
+// import DeleteDeckForm from "./DeleteDeckForm";
 
 export default function LeftSidebar({
   selectedDeck,
@@ -21,26 +22,12 @@ export default function LeftSidebar({
       <div className="box">
         <DeckList decks={decks} onSelectDeck={onSelectDeck} />
       </div>
-      <div className="box">
-        <NewDeckForm onCreateDeck={onCreateDeck} />
-      </div>
-      <div className="box">
-        <ButtonGroup
-          variant="outlined"
-          size="small"
-          aria-label="text button group"
-        >
-          <UpdateDeckForm
-            deckId={selectedDeck.id}
-            deckTitle={selectedDeck.title}
-            onUpdateDeck={onUpdateDeck}
-          />
-          <DeleteDeckForm
-            deckId={selectedDeck.id}
-            onDeleteDeck={onDeleteDeck}
-          />
-        </ButtonGroup>
-      </div>
+      <CrudDeckForms
+        selectedDeck={selectedDeck}
+        onCreateDeck={onCreateDeck}
+        onUpdateDeck={onUpdateDeck}
+        onDeleteDeck={onDeleteDeck}
+      />
       <h2>Cards</h2>
       <div className="box">
         <CardList cards={cards} onSelectCard={onSelectCard} />
