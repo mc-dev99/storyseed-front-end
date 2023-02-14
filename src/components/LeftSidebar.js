@@ -1,5 +1,5 @@
 import DeckList from "./DeckList";
-import { ButtonGroup, Divider } from "@mui/material";
+import { ButtonGroup, Divider, Typography } from "@mui/material";
 import CardList from "./CardList";
 import CrudDeckForms from "./CrudDeckForms";
 // import NewDeckForm from "./NewDeckForm";
@@ -18,7 +18,9 @@ export default function LeftSidebar({
 }) {
   return (
     <aside id="leftSidebar">
-      <h2>Decks</h2>
+      <Typography variant="h5" gutterBottom>
+        Decks
+      </Typography>
       <div className="box">
         <DeckList decks={decks} onSelectDeck={onSelectDeck} />
       </div>
@@ -28,7 +30,10 @@ export default function LeftSidebar({
         onUpdateDeck={onUpdateDeck}
         onDeleteDeck={onDeleteDeck}
       />
-      <h2>Cards</h2>
+      <Divider />
+      <Typography variant="h5" gutterBottom>
+        Cards
+      </Typography>
       <div className="box">
         <CardList cards={cards} onSelectCard={onSelectCard} />
       </div>
