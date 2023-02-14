@@ -1,23 +1,19 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { DndContext } from "@dnd-kit/core";
-import {
-  restrictToWindowEdges,
-  restrictToParentElement,
-} from "@dnd-kit/modifiers";
+// import { DndContext } from "@dnd-kit/core";
+// import {
+//   restrictToWindowEdges,
+//   restrictToParentElement,
+// } from "@dnd-kit/modifiers";
 import { supabase } from "./supabaseClient";
-import Auth from "./components/Auth";
-import Account from "./components/Account";
+// import Auth from "./components/Auth";
+// import Account from "./components/Account";
 import * as routes from "./api/routes.js";
 import { Typography } from "@mui/material";
 
-import CardDraggable from "./components/CardDraggable.js";
 import CardDragGroup from "./components/CardDragGroup.js";
 import LeftSidebar from "./components/LeftSidebar";
 import RightSidebar from "./components/RightSidebar";
-import DeckList from "./components/DeckList";
-import { Droppable } from "./components/Droppable";
-import { Draggable } from "./components/Draggable";
 
 function App() {
   //Authentication Session
