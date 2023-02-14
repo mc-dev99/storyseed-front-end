@@ -8,7 +8,7 @@
   /* if you change the above value, scroll to the bottom
 and change the media query according to the comment! */
   margin: 0 auto;
-  /* width: 1350px; */
+  width: 1350px;
   /* this centers the entire page */
 }
 
@@ -40,6 +40,7 @@ aside {
 }
 
 main {
+  background-color: gray;
   outline-style: solid;
   outline-color: gray;
   flex: 1;

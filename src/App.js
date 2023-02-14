@@ -9,7 +9,7 @@ import { supabase } from "./supabaseClient";
 import Auth from "./components/Auth";
 import Account from "./components/Account";
 import * as routes from "./api/routes.js";
-import { Button } from "@mui/material";
+import { Typography } from "@mui/material";
 
 import LeftSidebar from "./components/LeftSidebar";
 import RightSidebar from "./components/RightSidebar";
@@ -192,7 +192,9 @@ function App() {
   return (
     <div id="container">
       <header id="topBar">
-        <h1>StorySeed</h1>
+        <Typography variant="h2" gutterBottom>
+          storyseed
+        </Typography>
       </header>
       <div id="flex">
         <LeftSidebar
