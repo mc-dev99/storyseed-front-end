@@ -30,7 +30,7 @@ const NewDeckForm = ({ onCreateDeck }) => {
   };
 
   return (
-    <div>
+    <div className="crud">
       <Button variant="outlined" onClick={handleClickOpen}>
         Create New Deck
       </Button>

@@ -1,5 +1,5 @@
 import DeckList from "./DeckList";
-import { ButtonGroup, Divider, Typography } from "@mui/material";
+import { ButtonGroup, Box, Divider, Typography } from "@mui/material";
 import CardList from "./CardList";
 import CrudDeckForms from "./CrudDeckForms";
 // import NewDeckForm from "./NewDeckForm";
@@ -30,7 +30,9 @@ export default function LeftSidebar({
         onUpdateDeck={onUpdateDeck}
         onDeleteDeck={onDeleteDeck}
       />
-      <Divider />
+      <Box className="divider">
+        <Divider flexItem />
+      </Box>
       <Typography variant="h5" gutterBottom>
         Cards
       </Typography>

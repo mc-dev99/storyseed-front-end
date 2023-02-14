@@ -1,3 +1,7 @@
+.crud {
+  /* align-items: right; */
+}
+
 .box {
   margin: 5px 0 5px 0;
 }
@@ -10,6 +14,11 @@ and change the media query according to the comment! */
   margin: 0 auto;
   width: 1350px;
   /* this centers the entire page */
+}
+
+.divider {
+  margin: 30px 0 30px 0;
+  /* padding: 50px 0 50px 0; */
 }
 
 #flex {
