@@ -31,7 +31,7 @@ export default function CardDraggable(props) {
       {...listeners}
       {...attributes}
     >
-      <CardContent>{props.desc}</CardContent>
+      <CardContent>{props.title}</CardContent>
     </Card>
   );
 }

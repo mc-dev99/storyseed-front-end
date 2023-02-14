@@ -58,6 +58,16 @@ main {
   min-height: 500px;
 }
 
+#CardDragGroup {
+  background-color: gray;
+  outline-style: solid;
+  outline-color: gray;
+  flex: 1;
+  padding: 20px;
+  order: 2;
+  min-height: 500px;
+}
+
 #leftSidebar {
   order: 1;
 }

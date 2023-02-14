@@ -184,21 +184,17 @@ function App() {
 
   const handleDrawCard = (event, newCard) => {
     let updatedCardsState = [...cardsState];
-    if (
-      newCard.id in
-      cardsState.filter((card) => {
-        return card.id;
-      })
-    ) {
-      for (const card in updatedCardsState) {
-        if (card.id === newCard.id) {
-          card.title = newCard.title;
-          card.desc = newCard.desc;
-          card.position.x = 500;
-          card.position.y = 300;
-        }
-      }
-    } else {
+    // if (cardsState.filter((card) => card.id === newCard.id).length > 0) {
+    //   for (const card of updatedCardsState) {
+    //     if (card.id === newCard.id) {
+    //       card.title = newCard.title;
+    //       card.desc = newCard.desc;
+    //       card.position.x = 500;
+    //       card.position.y = 300;
+    //     }
+    //   }
+    // } else {
+    if (cardsState.filter((card) => card.id === newCard.id).length === 0) {
       updatedCardsState = [
         ...updatedCardsState,
         {
@@ -214,7 +210,7 @@ function App() {
     console.log(updatedCardsState);
   };
 
-  const handleDragEnd = (ev) => {
+  const handleDragEnd = (ev, cardsState) => {
     // const paren = parent.find((x) => x.id === ev.active.id);
     // paren.position.x += ev.delta.x;
     // paren.position.y += ev.delta.y;
@@ -245,7 +241,29 @@ function App() {
     //     y: cardsState.position.y + ev.delta.y,
     //   },
     // });
-    return 0;
+    console.log(ev);
+    // handleDrawCard({
+    //   id: cardsState.id,
+    //   desc: cardsState.desc,
+    //   position: {
+    //     x: cardsState.position.x + ev.delta.x,
+    //     y: cardsState.position.y + ev.delta.y,
+    //   },
+    // });
+    let updatedCardsState = [...cardsState];
+    console.log(updatedCardsState);
+    for (const card of updatedCardsState) {
+      console.log(card);
+      if (card.id === ev.active.id) {
+        card.position = {
+          x: card.position.x + ev.delta.x,
+          y: card.position.y + ev.delta.y,
+        };
+      }
+    }
+    console.log(updatedCardsState);
+    console.log(ev.active.id);
+    setCardsState(updatedCardsState);
   };
 
   // const draggableMarkup = (
@@ -260,6 +278,9 @@ function App() {
   //     Drag me
   //   </Draggable>
   // );
+
+  console.log("the handler is");
+  console.log(handleDragEnd);
 
   return (
     <div id="container">
@@ -281,26 +302,14 @@ function App() {
           onDrawCard={handleDrawCard}
         />
         <main>
-          <DndContext
-            onDragEnd={handleDragEnd}
-            modifiers={[restrictToWindowEdges, restrictToParentElement]}
-          >
-            <CardDragGroup cards={cardsState} />
-            {/* {parent === null ? draggableMarkup : null} */}
-            {/* <CardDraggable
+          <CardDragGroup cards={cardsState} handleDragEnd={handleDragEnd} />
+          {/* {parent === null ? draggableMarkup : null} */}
+          {/* <CardDraggable
               left={cardsState.position.x}
               top={cardsState.position.y}
               id="1"
               desc="Drag me!"
             /> */}
-            {containers.map((id) => (
-              // We updated the Droppable component so it would accept an `id`
-              // prop and pass it to `useDroppable`
-              <Droppable key={id} id={id}>
-                Drop here
-              </Droppable>
-            ))}
-          </DndContext>
         </main>
         <RightSidebar
           selectedCard={selectedCard}
