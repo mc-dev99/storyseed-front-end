@@ -6,6 +6,13 @@
   margin: 5px 0 5px 0;
 }
 
+.CardTitle {
+  padding: 30px 10px 30px 10px;
+  font-size: x-small;
+  overflow: scroll;
+  text-align: center;
+}
+
 #container {
   /* max-width: 900px; */
   /* this is the width of your layout! */
@@ -37,6 +44,7 @@ and change the media query according to the comment! */
 } */
 
 #topBar {
+  margin: 15px 0 15px 0;
   text-align: center;
 }
 
@@ -50,22 +58,22 @@ aside {
 
 main {
   background-color: gray;
+  border-radius: 5px;
   outline-style: solid;
-  outline-color: gray;
+  outline-color: darkslateblue;
   flex: 1;
   padding: 20px;
   order: 2;
-  min-height: 500px;
+  height: 550px;
 }
 
 #CardDragGroup {
   background-color: gray;
-  outline-style: solid;
-  outline-color: gray;
+  border-radius: 5px;
   flex: 1;
   padding: 20px;
   order: 2;
-  min-height: 500px;
+  height: 550px;
 }
 
 #leftSidebar {

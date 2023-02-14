@@ -206,8 +206,17 @@ function App() {
         },
       ];
     }
-    setCardsState(updatedCardsState);
     console.log(updatedCardsState);
+    setCardsState(updatedCardsState);
+  };
+
+  const handleRemoveCard = (event, oldCard) => {
+    const updatedCardsState = cardsState.filter(
+      (card) => card.id !== oldCard.id
+    );
+
+    console.log(updatedCardsState);
+    setCardsState(updatedCardsState);
   };
 
   const handleDragEnd = (ev, cardsState) => {
@@ -294,15 +303,21 @@ function App() {
           selectedDeck={selectedDeck}
           decks={deckListData}
           cards={cardsData}
+          drawnCards={cardsState}
           onSelectDeck={selectDeck}
           onCreateDeck={createDeck}
           onUpdateDeck={updateDeck}
           onDeleteDeck={deleteDeck}
           onSelectCard={selectCard}
           onDrawCard={handleDrawCard}
+          onRemoveCard={handleRemoveCard}
         />
         <main>
-          <CardDragGroup cards={cardsState} handleDragEnd={handleDragEnd} />
+          <CardDragGroup
+            cards={cardsState}
+            onSelectCard={selectCard}
+            handleDragEnd={handleDragEnd}
+          />
           {/* {parent === null ? draggableMarkup : null} */}
           {/* <CardDraggable
               left={cardsState.position.x}

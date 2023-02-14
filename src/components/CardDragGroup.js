@@ -7,7 +7,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import CardDraggable from "./CardDraggable";
 
-export default function CardDragGroup({ cards, handleDragEnd }) {
+export default function CardDragGroup({ cards, onSelectCard, handleDragEnd }) {
   console.log(cards);
   const cardGroup = cards.map((card) => {
     // We updated the Droppable component so it would accept an `id`
@@ -16,6 +16,7 @@ export default function CardDragGroup({ cards, handleDragEnd }) {
     return (
       <CardDraggable
         key={card.id}
+        cards={cards}
         left={card.position.x}
         top={card.position.y}
         id={card.id}

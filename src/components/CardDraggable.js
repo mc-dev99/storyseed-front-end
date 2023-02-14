@@ -3,35 +3,38 @@ import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import {
   Card,
+  CardActions,
   CardContent,
+  IconButton,
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Typography,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-export default function CardDraggable(props) {
+import DeleteIcon from "@mui/icons-material/Delete";
+export default function CardDraggable({ cards, left, top, id, title, desc }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: props.id,
+    id: id,
   });
 
   const style = {
     cursor: "pointer",
     position: "absolute",
-    left: props.left,
-    top: props.top,
+    left: left,
+    top: top,
     transform: CSS.Translate.toString(transform),
   };
 
   return (
     <Card
-      sx={{ minWidth: 77, minHeight: 132, maxWidth: 77, maxHeight: 132 }}
+      sx={{ minWidth: 100, minHeight: 150, maxWidth: 100, maxHeight: 132 }}
       ref={setNodeRef}
       style={style}
       {...listeners}
       {...attributes}
     >
-      <CardContent>{props.title}</CardContent>
+      <p className="CardTitle">{title}</p>
     </Card>
   );
 }

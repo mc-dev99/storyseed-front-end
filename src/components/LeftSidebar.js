@@ -10,12 +10,14 @@ export default function LeftSidebar({
   selectedDeck,
   decks,
   cards,
+  drawnCards,
   onSelectDeck,
   onCreateDeck,
   onUpdateDeck,
   onDeleteDeck,
   onSelectCard,
   onDrawCard,
+  onRemoveCard,
 }) {
   return (
     <aside id="leftSidebar">
@@ -40,8 +42,10 @@ export default function LeftSidebar({
       <div className="box">
         <CardList
           cards={cards}
+          drawnCards={drawnCards}
           onSelectCard={onSelectCard}
           onDrawCard={onDrawCard}
+          onRemoveCard={onRemoveCard}
         />
       </div>
     </aside>

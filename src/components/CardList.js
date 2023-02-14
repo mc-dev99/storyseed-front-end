@@ -2,17 +2,23 @@
 import { useState } from "react";
 import {
   Button,
+  IconButton,
   List,
   ListItemButton,
   ListItemText,
   MenuItem,
 } from "@mui/material";
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
+import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
+import { LibraryAdd } from "@mui/icons-material";
 
 export default function CardList({
   cards,
+  drawnCards,
   onSelectCard,
   onDeleteCard,
   onDrawCard,
+  onRemoveCard,
 }) {
   const [cardName, setCardName] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(1);
@@ -38,7 +44,21 @@ export default function CardList({
         onClick={(event) => handleClick(event, card.id)}
       >
         <ListItemText card-id={card.id} value={card.id} primary={card.title} />
-        <Button onClick={(event) => onDrawCard(event, card)}>Draw</Button>
+        <IconButton
+          onClick={(event) => {
+            drawnCards.filter((drawnCard) => drawnCard.id === card.id)
+              .length === 0
+              ? onDrawCard(event, card)
+              : onRemoveCard(event, card);
+          }}
+        >
+          {drawnCards.filter((drawnCard) => drawnCard.id === card.id).length ===
+          0 ? (
+            <LibraryAddIcon />
+          ) : (
+            <LibraryAddCheckIcon />
+          )}
+        </IconButton>
       </ListItemButton>
     );
   });
