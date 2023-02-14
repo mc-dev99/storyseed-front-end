@@ -15,6 +15,7 @@ export default function LeftSidebar({
   onUpdateDeck,
   onDeleteDeck,
   onSelectCard,
+  onDrawCard,
 }) {
   return (
     <aside id="leftSidebar">
@@ -37,7 +38,11 @@ export default function LeftSidebar({
         Cards
       </Typography>
       <div className="box">
-        <CardList cards={cards} onSelectCard={onSelectCard} />
+        <CardList
+          cards={cards}
+          onSelectCard={onSelectCard}
+          onDrawCard={onDrawCard}
+        />
       </div>
     </aside>
   );

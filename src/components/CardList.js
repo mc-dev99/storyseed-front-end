@@ -1,8 +1,19 @@
 // import PropTypes from "prop-types";
 import { useState } from "react";
-import { List, ListItemButton, ListItemText, MenuItem } from "@mui/material";
+import {
+  Button,
+  List,
+  ListItemButton,
+  ListItemText,
+  MenuItem,
+} from "@mui/material";
 
-export default function CardList({ cards, onSelectCard, onDeleteCard }) {
+export default function CardList({
+  cards,
+  onSelectCard,
+  onDeleteCard,
+  onDrawCard,
+}) {
   const [cardName, setCardName] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(1);
   const handleClick = (event, index) => {
@@ -27,6 +38,7 @@ export default function CardList({ cards, onSelectCard, onDeleteCard }) {
         onClick={(event) => handleClick(event, card.id)}
       >
         <ListItemText card-id={card.id} value={card.id} primary={card.title} />
+        <Button onClick={(event) => onDrawCard(event, card)}>Draw</Button>
       </ListItemButton>
     );
   });
