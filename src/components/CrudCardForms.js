@@ -121,9 +121,9 @@ const UpdateCardForm = ({
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>Rename</Button>
+      <Button onClick={handleClickOpen}>Edit</Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Rename {cardTitle}</DialogTitle>
+        <DialogTitle>Edit {cardTitle}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
