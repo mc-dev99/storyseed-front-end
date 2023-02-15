@@ -198,7 +198,7 @@ function App() {
           id: newCard.id,
           title: newCard.title,
           desc: newCard.desc,
-          position: { x: 500, y: 300 },
+          position: { x: 670, y: 320 },
         },
       ];
     }
