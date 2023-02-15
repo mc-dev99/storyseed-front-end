@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import CrudCardForms from "./CrudCardForms";
 
 export default function RightSidebar({
@@ -10,6 +10,10 @@ export default function RightSidebar({
 }) {
   return (
     <aside id="rightSidebar">
+      <Typography variant="h5" gutterBottom>
+        Card Details
+      </Typography>
+      <br></br>
       <CrudCardForms
         selectedCard={selectedCard}
         selectedDeck={selectedDeck}
@@ -17,8 +21,9 @@ export default function RightSidebar({
         onUpdateCard={onUpdateCard}
         onDeleteCard={onDeleteCard}
       />
+      <br></br>
       <Card>
-        <CardContent>
+        <CardContent id="card-details">
           <h2>{selectedCard.title}</h2>
           <div className="box">
             <p>{selectedCard.desc}</p>

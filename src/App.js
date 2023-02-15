@@ -10,10 +10,23 @@ import { supabase } from "./supabaseClient";
 // import Account from "./components/Account";
 import * as routes from "./api/routes.js";
 import { Typography } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import ForumRegular from "./fonts/Forum-Regular.ttf";
 
 import CardDragGroup from "./components/CardDragGroup.js";
 import LeftSidebar from "./components/LeftSidebar";
 import RightSidebar from "./components/RightSidebar";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#d959b2",
+    },
+  },
+  typography: {
+    h2: { fontFamily: "ForumRegular, Roboto" },
+  },
+});
 
 function App() {
   //Authentication Session
@@ -288,49 +301,51 @@ function App() {
   console.log(handleDragEnd);
 
   return (
-    <div id="container">
-      <header id="topBar">
-        <Typography variant="h2" gutterBottom>
-          storyseed
-        </Typography>
-      </header>
-      <div id="flex">
-        <LeftSidebar
-          selectedDeck={selectedDeck}
-          decks={deckListData}
-          cards={cardsData}
-          drawnCards={cardsState}
-          onSelectDeck={selectDeck}
-          onCreateDeck={createDeck}
-          onUpdateDeck={updateDeck}
-          onDeleteDeck={deleteDeck}
-          onSelectCard={selectCard}
-          onDrawCard={handleDrawCard}
-          onRemoveCard={handleRemoveCard}
-        />
-        <main>
-          <CardDragGroup
-            cards={cardsState}
+    <ThemeProvider theme={theme}>
+      <div id="container">
+        <header id="topBar">
+          <Typography variant="h2" gutterBottom>
+            storyseed
+          </Typography>
+        </header>
+        <div id="flex">
+          <LeftSidebar
+            selectedDeck={selectedDeck}
+            decks={deckListData}
+            cards={cardsData}
+            drawnCards={cardsState}
+            onSelectDeck={selectDeck}
+            onCreateDeck={createDeck}
+            onUpdateDeck={updateDeck}
+            onDeleteDeck={deleteDeck}
             onSelectCard={selectCard}
-            handleDragEnd={handleDragEnd}
+            onDrawCard={handleDrawCard}
+            onRemoveCard={handleRemoveCard}
           />
-          {/* {parent === null ? draggableMarkup : null} */}
-          {/* <CardDraggable
+          <main>
+            <CardDragGroup
+              cards={cardsState}
+              onSelectCard={selectCard}
+              handleDragEnd={handleDragEnd}
+            />
+            {/* {parent === null ? draggableMarkup : null} */}
+            {/* <CardDraggable
               left={cardsState.position.x}
               top={cardsState.position.y}
               id="1"
               desc="Drag me!"
             /> */}
-        </main>
-        <RightSidebar
-          selectedCard={selectedCard}
-          selectedDeck={selectedDeck}
-          onCreateCard={createCard}
-          onUpdateCard={updateCard}
-          onDeleteCard={deleteCard}
-        />
+          </main>
+          <RightSidebar
+            selectedCard={selectedCard}
+            selectedDeck={selectedDeck}
+            onCreateCard={createCard}
+            onUpdateCard={updateCard}
+            onDeleteCard={deleteCard}
+          />
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 export default App;

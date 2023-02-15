@@ -42,7 +42,7 @@ const NewCardForm = ({ deckId, onCreateCard }) => {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen}>
         Create New Card
       </Button>
       <Dialog open={open} onClose={handleClose}>
